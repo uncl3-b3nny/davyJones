@@ -39,7 +39,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.6'
 end
 group :production do
   gem 'pg'
