@@ -32,7 +32,11 @@
       }
     }
   ],
-  "buildpacks": [],
+    "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-ruby.git"
+    }
+  ],
   "environments": {
     "test": {
       "scripts": {
