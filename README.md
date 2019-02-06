@@ -149,6 +149,6 @@ This application requires:
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
-If you want your own deployment, edit the app.json file to point to your own repo, then click this button. (you may have to workaroun Heroku's love/hate relationship with Bundler though).
+If you want your own deployment, edit the app.json file to point to your own repo, then click the button below. (you may have to work around Heroku's love/hate relationship with Bundler though).
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
