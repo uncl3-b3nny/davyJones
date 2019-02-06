@@ -5,11 +5,17 @@
     %title= content_for?(:title) ? yield(:title) : 'Davy Jones'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Davy Jones'}"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Catamaran','application.css'
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = csrf_meta_tags
+    :css
+      body {
+        font-family: 'Pirata One', cursive;
+      }    
   %body
     %header
       = render 'layouts/navigation'
     %main{:role => "main"}
       = render 'layouts/messages'
       = yield
+/What's a pirate themed app without a piraty font?

@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
+  resources :lockers
+  root 'lockers#index'
+  get '/concierge', to: 'lockers#concierge'
 end
