@@ -141,15 +141,6 @@ Finally, I gave the concierge the ability to change a locker from unavailable to
 
 / 9. Update locker to be 'available' again
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
-
-Rails Composer is supported by developers who purchase our RailsApps tutorials.
-
-Ruby on Rails
--------------
 
 This application requires:
 
@@ -158,5 +149,6 @@ This application requires:
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
+If you want your own deployment, edit the app.json file to point to your own repo, then click this button. (you may have to workaroun Heroku's love/hate relationship with Bundler though).
 
--------------
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
