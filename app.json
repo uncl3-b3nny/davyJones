@@ -1,1 +1,7 @@
-app.json
+{
+  "name": "Davy Jones Lockers",
+  "description": "A program to help manage locking up your booty",
+  "repository": "https://github.com/bjlinville1/davyJones",
+  "logo": "https://github.com/bjlinville1/davyJones/blob/master/app/assets/images/app.jpg",
+  "keywords": []
+}
