@@ -1,7 +1,43 @@
 {
   "name": "Davy Jones Lockers",
   "description": "A program to help manage locking up your booty",
+  "keywords": [
+    "pirates",
+    "lockers",
+    "concierge"
+  ],
   "repository": "https://github.com/bjlinville1/davyJones",
   "logo": "https://github.com/bjlinville1/davyJones/blob/master/app/assets/images/app.jpg",
-  "keywords": []
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "bundle exec rake bootstrap"
+  },
+  "env": {
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "5"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 2,
+      "size": "Performance-M"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.5"
+      }
+    }
+  ],
+  "buildpacks": [],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
 }
