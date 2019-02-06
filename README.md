@@ -117,7 +117,7 @@ Since I only wrote a smoke test, I commented the primary steps I took to get the
 
 I started by allowing a concierge to "print" a ticket by clicking on one of the displayed 'available' lockers.
 
-# 1. get available lockers
+/ 1. get available lockers
 
 / 2. display buttons to accept concierge input & start the receiving workflow. 
 
@@ -131,7 +131,7 @@ Next I created a super simple search feature so a concierge can lookup a locker 
 
 / 5. Start the retrieval work flow by taking the locker name from the concierge
 
-# 6. get the requested locker with that ticket name
+/ 6. get the requested locker with that ticket name
 
 / 7. Show the locker number after a successful search
 
