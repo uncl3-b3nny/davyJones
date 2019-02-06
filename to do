@@ -1,0 +1,8 @@
+to do
+-----
+
+1. refactor lockers_controller.rb: def index
+2. google how to have sql sort by 2 fields, & fix lockers_controller.rb: def concierge
+3. add a gender field, whitelist it, migrate it, sort available lockers by gender too, & offer 2 selections for each size so concierges can customize for their patrons.
+4. refactor all the code on views/lockers/index.html.haml
+5. find & use a pirate name api
