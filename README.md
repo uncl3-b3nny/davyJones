@@ -23,35 +23,33 @@ Assumptions:
 3. Our customers never lose their tickets
 4. Since we only have 3000 lockers, we really don't give a hoot about how performant the code is.
 5. Since we don't care about performance, *I* assume that the most important question to answer here is "how can I make a bag check fun?"
-6. My only real constraint is the guideline of a 2-3 hour timebox
-7. Unless this is getting a Lot more complicated, the concierge will be the responsible party for determining the appropriate size locker, not my program. 
+6. Unless this is getting a Lot more complicated, the concierge will be the responsible party for determining the appropriate size locker, not my program. 
 
-Phase 1: Ideate with Jen
+Phase 1: Bouncing ideas for a locker assignment & ticketing system off my wife: 
 
-ideas for a locker assignment & ticketing system: 
-1. "It prints lyrics you have to sing to get your bags back"
+1. Me: "It prints lyrics you have to sing to get your bags back"
 	
-"what if you don't know the tune?"
+Jen: "what if you don't know the tune?"
 
-"it prints the music too"
+Me: "it prints the music too"
 
-"then you have to be able read music"
+Jen: "then you have to be able read music"
 
-"...iiiit can play the song for you when you check in"
+Me: "...iiiit can play the song for you when you check in"
 
-"To hard to remember when you're drunk"
+Jen: "To hard to remember when you're drunk"
 
-"you win. next"
+Me: "you win. next"
 
-2. "It snaps a pic of your face & caricatures you for the print"
+2. Jen: "It snaps a pic of your face & caricatures you for the print"
 
-"cameras, megabytes, and privacy oh my! too hard. I love it, but i only have 3 hours. next"
+Me: "cameras, megabytes, and privacy oh my! too hard. I love it, but i only have 3 hours. next"
 
-3. "Lucky Locker: a slot machine interface where you input your ticket number or locker size & if your's is the lucky locker number for the night you win a prize!"
+3. Me: "Lucky Locker: a slot machine interface where you input your ticket number or locker size & if your's is the lucky locker number for the night you win a prize!"
 
-"Kinda fun, but we can do better... Lockers... what about keys? The birds & the Keys? Florida Keys? Law Kers. Lalala... "
+Jen: "Kinda fun, but we can do better... Lockers... what about keys? The birds & the Keys? Florida Keys? Law Kers. Lalala... "
 
-4. "Davy Jones (Locker!) It generates a pirate name for you, and prints it on the card. Stretch goals: pirate caricatures of your face & swashbuckling tunes. Super stretch goal: One lucky number a week wins a bottle o'Rum!" 
+4. Me: "Davy Jones (Locker!) It generates a pirate name for you, and prints it on the card. Stretch goals: pirate caricatures of your face & swashbuckling tunes. Super stretch goal: One lucky number a week wins a bottle o'Rum!" 
 
 Manager: 'Johny, take these good people down to Davy Jones Locker.'
 
@@ -61,7 +59,7 @@ Manager: 'Our concierge Johny.'
 
 Johny: 'Oh, right.'
 	
-"Sold."
+Jen: "Sold."
 
 Ok, we've got a winner, now my thoughts go to... 
 
@@ -91,11 +89,11 @@ retrieving flow
 
 4. return their bags
 
-Ready, Set, Red-Green-Refactor? haha, yeah right. I've got 3, no, ~2.25 hours remaining. Buuuut your whole shtick is thoughtful software right? it strikes me - as I'm sitting here weighing whether or not to write any tests - that a company who claims to value thoughtful software but suggests an introductory coding exercise should be so brief puts an applicant in a tricky spot. If he or she chooses not to spend precious time notating their thought process because they'd rather spend it building things that demonstrate their skills, you would be left guessing at just how thoughtful they had been. So I'll assume you thought of that, and added the 2-3 hour guideline anyway, indicating that you don't care THAT much about the code quality for this exercise. (Which I think is kind of a shame, because there are probably some interesting ideas to digest around designing a system that checks conditions on objects & needs to be able to determine which objects are available despite being able to be reset the objects' conditions in any possible order. I'll put a pin in it, and if I get around to refactoring I'll think it through more thoroughly) 
+Ready, Set, Red-Green-Refactor? Okay, so writing feature specs seems like overkill for an exercise, but then again, Skiplist's whole shtick is thoughtful software right? Am I being more thoughtful by understanding its just an exercise, and not over-engineering it, or does that just present myself as lazy? I'm going to assume you thought of this, and added the 2-3 hour guideline as parameter, indicating that you don't care THAT much about the code quality for this exercise. (Which I'm kind of disappointed about, because one of my favorite things is wrestling with understanding a problem, and weighing the pros & cons of solutions to it) 
 
-I think Davy needs to know a couple things: 1. A locker's availability status, and 2. a locker's size. That's basically it for our data architecture. I'm going to present the concierge with available options in each size, and when they select them, "print" the ticket, update the db, & refresh the view.(and of course add pirate names)
+That said, I think Davy needs to know a couple things: 1. A locker's availability status, and 2. a locker's size. That's basically it for our data architecture. I'm going to present the concierge with available options in each size, and when they select one, I'll "print" the ticket, update the db, & refresh the view.(and of course add pirate names)
 
-No idea how to do this in the remaining amount of time without some mad framework help. Its been awhile, so I'll dust off RoR, and use the composer gem.
+In the vein of getting something up and working quickly, I think I'll dust off RoR, and use the composer gem.
 
 Phase 3. Ready-Set-Scaffold!
 
@@ -107,13 +105,13 @@ db:seed x3000
 
 NOOOO, the Faker gem doesn't have a pirate name library! I'm devastated. I'm hand seeding 10 pirate names for this thing until we find a good api, and definitely submitting an issue requesting an update.
 
-db & Heroku creations & migrations
+db & Heroku creations, seeds, & migrations
 
 Voila! After only a few bugs, the app is live, and has a db of lockers. Architecture: check. Deployment: check. Finally time to write some code.
  
-doh. I forgot to include the locker size in the model; rails g migration add_size_to_lockers size:string
+doh. I forgot to include the locker size in the model; rails g migration add_size_to_lockers size:string, etc
 
-Since I only wrote a smoke test, I commented the primary steps I took to get the application behavior necessary for our use case below:
+Since the test suite only has rspec's smoke test, I commented the primary steps I took to write the application behavior necessary for our use case below. If you search the repo for these comments, you can pretty much step through my process:
 
 I started by allowing a concierge to "print" a ticket by clicking on one of the displayed 'available' lockers.
 
@@ -141,15 +139,6 @@ Finally, I gave the concierge the ability to change a locker from unavailable to
 
 / 9. Update locker to be 'available' again
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
-
-Rails Composer is supported by developers who purchase our RailsApps tutorials.
-
-Ruby on Rails
--------------
 
 This application requires:
 
@@ -158,5 +147,6 @@ This application requires:
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
+If you want your own deployment, edit the app.json file to point to your own repo, then click the button below. (you may have to work around Heroku's love/hate relationship with Bundler though).
 
--------------
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
