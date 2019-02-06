@@ -1,0 +1,24 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Size
+      %th Available?
+      %th Show
+      %th Edit
+      %th Destroy
+
+  %tbody
+    - @lockers.each do |locker|
+      %tr
+        %td= locker.name
+        %td= locker.size
+        %td= locker.is_available
+        %td= link_to 'Show', locker
+        %td= link_to 'Edit', edit_locker_path(locker)
+        %td= link_to 'Destroy', locker, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+= link_to 'New Locker', new_locker_path
+%br
+= link_to 'Home', lockers_path

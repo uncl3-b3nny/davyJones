@@ -1,0 +1,13 @@
+= form_for @locker do |f|
+  - if @locker.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@locker.errors.count, "error")} prohibited this locker from being saved:"
+      %ul
+        - @locker.errors.full_messages.each do |message|
+          %li= message          
+  .field
+    = f.hidden_field :is_available, value: true
+
+  .actions
+    = f.submit "Click hereabouts to return the booty to its rightful owner"
+/ 9. Update locker to be 'available' again

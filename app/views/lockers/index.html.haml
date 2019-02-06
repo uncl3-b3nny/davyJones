@@ -1,0 +1,45 @@
+%h1 Ahoy! Welcome to Davy Jones' Lockers!
+%br
+
+/ 2. display size buttons to accept concierge input & start the receiving flow. to do: add a gender field, whitelist it, migrate it, sort available lockers by gender too, & offer 2 selections for each size so concierges can customize for their patrons.
+/ to do: refactor all this
+
+-if @small
+  - @locker = @small
+  = render 'print_ticket_button'
+-else
+  ="Blargh! Davy Jones be all out of small lockers."
+  %br
+
+-if @medium
+  - @locker = @medium
+  = render 'print_ticket_button'
+-else
+  ="Unlucky matey. Davy Jones be all out of medium lockers."
+  %br
+
+-if @large
+  - @locker = @large
+  = render 'print_ticket_button'
+-else
+  ="Shiver me Timbers, Davy Jones be all out of large lockers!"
+  %br
+/ I genuinely feel like the above Should Not Be Working ...but it is ¯\_(ツ)_/¯ Does the rails form_for helper store variable state per each instance of 'render'?
+%br
+
+/ 5. Start the retrieval work flow by taking the locker name from the concierge
+%h4 Enter yer ticket name Down Below to find yer Locker:
+
+= form_tag(lockers_path, method: :get) do
+  = text_field_tag :name, params[:name]
+  = submit_tag 'Search', name: nil
+
+/ 7. Show the locker number after a successful search
+%p
+  -if @search_result
+    - @locker = @search_result
+    = "Locker number: " + "#{@search_result.id}"
+    = render 'toggle_availability'
+/ 8. allow a concierge to ^update it when bags are returned to owners
+
+= link_to 'Forgetful?', concierge_path

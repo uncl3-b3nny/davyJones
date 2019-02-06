@@ -1,0 +1,18 @@
+-if @locker.is_available == false
+  %h1
+    = "Printed Ticket: #{@locker.name}"
+    %br
+    = "Locker: #{@locker.id}"
+-else
+  %p
+    %b Locker is available?
+    = @locker.is_available
+  %p
+    %b Name:
+    = @locker.name
+  %p
+    %b Size:
+    = @locker.size
+
+= link_to 'Back', lockers_path
+/ 4. "Print" ticket & show concierge locker number to put bags in
